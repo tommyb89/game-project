@@ -31,10 +31,12 @@ h1 {
 .score__current {
   background-color: #d4d4d4;
   width: 100%;
+  padding: 10px;
 }
 .score__high {
   background-color: #c4c4c4;
   width: 100%;
+  padding: 10px;
 }
 
 .grid {
@@ -80,4 +82,10 @@ h1 {
   background-color: #b3b3b3;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+#result {
+  content: "";
+  padding: 5spx;
+  margin-top: 20px;
 }

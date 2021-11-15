@@ -26,14 +26,15 @@ h1 {
   display: flex;
   justify-content: space-between;
   border: 2px solid black;
-
   &__current {
     background-color: #d4d4d4;
     width: 100%;
+    padding: 10px;
   }
   &__high {
     background-color: #c4c4c4;
     width: 100%;
+    padding: 10px;
   }
 }
 
@@ -84,4 +85,10 @@ h1 {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
+}
+
+#result {
+  content: "";
+  padding: 5spx;
+  margin-top: 20px;
 }
