@@ -1,27 +1,85 @@
 "use strict";
 
-// Select HTML elements
+// 2048
+// The goal of this game is to reach 2048 in first square of the board
+// New Game button resets the game, score is 0, board has 2 random squares with the value of 2
+// Moving the board with arrow keys
+// How to add square fields that are equal and if they're not move them
+// Every key press creates a new board square with the value of 2 or 4, but only if there's an empty(0) square othwerwise player loses the game
+// Updating the score
+// When player reaches the goal the notification appears
+// Selecting HTML elements
 var currentScore = document.getElementById("score");
 var highScore = document.getElementById("high-score");
 var result = document.getElementById("result");
 var newGame = document.getElementById("new-game");
 var grid = document.querySelector(".grid");
-var squares = document.querySelectorAll(".grid__square"); // Goal of the game: Reach 2048 by adding 2s and multiplies of 2
-// Game starts with 2 randomly assigned squares with the value of 2
+var score = 0;
+var high = 0;
+var goal = 2048;
+var width = 4;
 
-var randomInitialSquares = function randomInitialSquares() {
-  var first = Math.floor(Math.random() * squares.length);
-  var second = Math.floor(Math.random() * squares.length);
-  console.log(first, second);
-}; // add the click event to NEW GAME
+var random = function random() {
+  return Math.floor(Math.random() * 4);
+}; // Create random number between 2 - 4
 
 
-var resetGame = function resetGame() {
-  // reset current score
-  currentScore.innerText = 0;
-  randomInitialSquares();
+var randomNum = function randomNum() {
+  return Math.random() > 0.5 ? 2 : 4;
 };
 
-newGame.addEventListener("click", resetGame); // Moving and adding up squares that are equal - displaying updated score
-// Once added new basic number is being created and randomly assigned
-// New Game button resets the game, score is 0, board has 2 random squares
+var board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+console.table(board);
+
+var generateRand = function generateRand() {
+  return board[random()][random()] = randomNum();
+};
+
+var generateGrid = function generateGrid() {
+  grid.innerHTML = "";
+
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board[i].length; j++) {
+      grid.innerHTML += "<div class=\"grid__square\">".concat(board[i][j], "</div>");
+    }
+  }
+};
+
+var setInitialSquares = function setInitialSquares() {
+  generateRand();
+  generateRand();
+}; //move right functionality
+
+
+var moveRight = function moveRight() {
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board[i].length; j++) {
+      if (board[i][j + 1] == 0) {
+        board[i][j + 1] = board[i][j];
+        board[i][j] = 0;
+        console.log(board[i][j + 1]);
+      }
+    }
+  }
+
+  generateGrid();
+};
+
+setInitialSquares();
+moveRight(); // Resetting the game, score = 0, board is clean.
+
+var setNewGame = function setNewGame() {
+  currentScore.innerText = 0;
+  setInitialSquares();
+}; // New Game functionality
+
+
+newGame.addEventListener("click", setNewGame); // const arr = [0, 2, 0, 0];
+// arr.forEach((x, i) => {
+//   // console.log(arr[i]);
+//   if (arr[i + 1] == 0) {
+//     console.log(arr[i]);
+//     arr[i + 1] = arr[i];
+//     arr[i] = 0;
+//   }
+// });
