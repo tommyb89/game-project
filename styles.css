@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -19,20 +20,27 @@ h1 {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .score {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 2px solid black;
 }
+
 .score__current {
   background-color: #d4d4d4;
   width: 100%;
   padding: 10px;
 }
+
 .score__high {
   background-color: #c4c4c4;
   width: 100%;
@@ -40,28 +48,43 @@ h1 {
 }
 
 .grid {
+  display: -ms-grid;
   display: grid;
-  grid-template-rows: repeat(4, 80px);
-  grid-template-columns: repeat(4, 80px);
+  -ms-grid-rows: (80px)[4];
+      grid-template-rows: repeat(4, 80px);
+  -ms-grid-columns: (80px)[4];
+      grid-template-columns: repeat(4, 80px);
   grid-gap: 10px;
   margin-top: 20px;
   background-color: #7f7f7f;
   width: 380px;
   height: 380px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   border-radius: 5px;
   border: 2px solid black;
 }
+
 .grid__square {
   width: 80px;
   height: 80px;
   background-color: #c4c4c4;
   border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 28px;
 }
 
@@ -73,15 +96,20 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   border: none;
-  box-shadow: 0 9px #999;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
 }
+
 #new-game:hover {
   background-color: #b3b3b3;
 }
+
 #new-game:active {
   background-color: #b3b3b3;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  -webkit-box-shadow: 0 5px #666;
+          box-shadow: 0 5px #666;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
 }
 
 #result {
@@ -89,3 +117,4 @@ h1 {
   padding: 5spx;
   margin-top: 20px;
 }
+/*# sourceMappingURL=styles.css.map */

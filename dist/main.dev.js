@@ -28,8 +28,7 @@ var randomNum = function randomNum() {
   return Math.random() > 0.5 ? 2 : 4;
 };
 
-var board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-console.table(board);
+var board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]; // console.table(board);
 
 var generateRand = function generateRand() {
   return board[random()][random()] = randomNum();
@@ -48,7 +47,7 @@ var generateGrid = function generateGrid() {
 var setInitialSquares = function setInitialSquares() {
   generateRand();
   generateRand();
-}; //move right functionality
+}; // move right functionality
 
 
 var moveRight = function moveRight() {
@@ -56,8 +55,7 @@ var moveRight = function moveRight() {
     for (var j = 0; j < board[i].length; j++) {
       if (board[i][j + 1] == 0) {
         board[i][j + 1] = board[i][j];
-        board[i][j] = 0;
-        console.log(board[i][j + 1]);
+        board[i][j] = 0; // console.log(board[i][j + 1]);
       }
     }
   }
@@ -66,7 +64,43 @@ var moveRight = function moveRight() {
 };
 
 setInitialSquares();
-moveRight(); // Resetting the game, score = 0, board is clean.
+moveRight(); // move left
+
+var moveLeft = function moveLeft() {
+  console.log(board);
+
+  for (var i = board.length - 1; i >= 0; i--) {
+    // console.log(board[i]);
+    for (var j = board[i].length - 1; j > 0; j--) {
+      if (board[i][j - 1] == 0) {
+        console.log(board[i][j]);
+        board[i][j - 1] = board[i][j];
+        board[i][j] = 0;
+      }
+    }
+  }
+
+  generateGrid();
+};
+
+setInitialSquares(); // moveLeft();
+// MOVE UP
+
+var moveUp = function moveUp() {
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board[i].length; j++) {
+      if (board[i][j] == 0) {
+        board[i][j] = board[i][j];
+        board[i][j] = 0;
+      }
+    }
+  }
+
+  generateGrid();
+};
+
+setInitialSquares();
+moveUp(); // Resetting the game, score = 0, board is clean.
 
 var setNewGame = function setNewGame() {
   currentScore.innerText = 0;
@@ -74,7 +108,21 @@ var setNewGame = function setNewGame() {
 }; // New Game functionality
 
 
-newGame.addEventListener("click", setNewGame); // const arr = [0, 2, 0, 0];
+newGame.addEventListener("click", setNewGame); // MOVEMENT
+// Detecting arrows keys presses
+
+document.addEventListener("keydown", function (event) {
+  var move = event.key; // Checking which key was pressed
+
+  if (move === "ArrowUp") {
+    // console.log("go up");
+    moveUp();
+  } else if (move === "ArrowDown") {} else if (move === "ArrowRight") {
+    moveRight();
+  } else if (move === "ArrowLeft") {
+    moveLeft();
+  }
+}); // const arr = [0, 2, 0, 0];
 // arr.forEach((x, i) => {
 //   // console.log(arr[i]);
 //   if (arr[i + 1] == 0) {
